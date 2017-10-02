@@ -23,8 +23,8 @@ public class Roba {
     @DatabaseField(columnName = POLJE_TEZINA, canBeNull = false)
     private double tezina;
 
-    @ForeignCollectionField(foreignFieldName = "roba")
-    private ForeignCollection<Avion> avioni;
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "avion_id")
+    private Avion avion;
 
     public Roba() {
     }
@@ -69,12 +69,12 @@ public class Roba {
         this.tezina = tezina;
     }
 
-    public ForeignCollection<Avion> getAvioni() {
-        return avioni;
+    public Avion getAvion() {
+        return avion;
     }
 
-    public void setAvioni(ForeignCollection<Avion> avioni) {
-        this.avioni = avioni;
+    public void setAvion(Avion avion) {
+        this.avion = avion;
     }
 
     @Override
