@@ -17,12 +17,12 @@ public class Zadatak1KreiranjeTabela {
             connectionSource = new JdbcConnectionSource(Konstante.DATABASE_URL);
 
 
-            TableUtils.dropTable(connectionSource, Roba.class,true);
             TableUtils.dropTable(connectionSource, Avion.class,true);
+            TableUtils.dropTable(connectionSource, Roba.class,true);
 
 
-            TableUtils.createTable(connectionSource,Avion.class);
             TableUtils.createTable(connectionSource,Roba.class);
+            TableUtils.createTable(connectionSource,Avion.class);
 
         }catch (Exception e) {
             e.printStackTrace();
