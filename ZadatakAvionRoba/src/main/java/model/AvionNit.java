@@ -1,18 +1,18 @@
 package model;
 
-
+import model.Aerdrom;
 import java.util.Random;
 
 public class AvionNit extends Thread {
 
-        public boolean dozvoljenoSletanje;
+        private Avion avion;
 
-    public AvionNit(boolean dozvoljenoSletanje) {
-        this.dozvoljenoSletanje = dozvoljenoSletanje;
+    public AvionNit(Avion avion) {
+        this.avion = avion;
     }
 
-    private void proveraOpreme(){
-
+    private void provera(){
+        System.out.println("Pocinju provere opreme za avion " + avion.getId());
             try {
                 Random random = new Random();
                 long vreme = Math.round(1000 + random.nextDouble());
@@ -22,18 +22,42 @@ public class AvionNit extends Thread {
             }
         }
 
-        private void poletanje(){
-            try {
-                this.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    private void poletanje(){
+
+         System.out.println("Avion " + avion.getId() + " je spreman za poletanje i ceka dozvolu za poletanje.");
+           do{
+
+                 if (Aerdrom.dozvoljenoPoletanje){
+                            // Citamo u synchronized bloku
+                 synchronized (Aerdrom.dozvoljenoPoletanje){
+                     Aerdrom.dozvoljenoPoletanje = false;
+                            }
+
+                 System.out.println("Avion " + avion.getId() + " izlazi na pistu i polece.");
+                 try {
+                 this.sleep(2000);
+                 } catch (InterruptedException e) {
+                     e.printStackTrace();
+                 }
+                            // Pisemo u synchronized bloku
+                 synchronized (Aerdrom.dozvoljenoPoletanje) {
+                     Aerdrom.dozvoljenoPoletanje = true;
+                     System.out.println("Avion " + avion.getId() + " je poleteo.");
+                            }
+                        }
+
+                } while(!Aerdrom.dozvoljenoPoletanje);
+
+
+
+                System.out.println("Svi avioni su poleteli.");
             }
 
-            System.out.println("Svi avion su poleteli.");
-        }
 
         public void run() {
-            proveraOpreme();
+            provera();
             poletanje();
         }
+
+
     }
