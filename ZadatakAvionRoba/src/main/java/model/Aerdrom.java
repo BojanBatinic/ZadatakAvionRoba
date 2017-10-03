@@ -12,6 +12,8 @@ import java.util.List;
 
 public class Aerdrom {
 
+    public static Boolean dozvoljenoPoletanje = true;
+
     static Dao<Avion,Integer> avionDao;
 
     public static void main(String[] args) {
@@ -24,9 +26,16 @@ public class Aerdrom {
             avionDao = DaoManager.createDao(connectionSource, Avion.class);
 
             List<Avion> avioni = avionDao.queryForAll();
-            System.out.println("Prikaz svih aviona.");
-            for(Avion a : avioni)
-                System.out.println(a);
+
+            AvionNit av1 = new AvionNit(avioni.get(0));
+            AvionNit av2 = new AvionNit(avioni.get(1));
+
+
+            av1.start();
+            av2.start();
+
+            av1.join();
+            av2.join();
 
 
 
@@ -40,6 +49,7 @@ public class Aerdrom {
                     e.printStackTrace();
                 }
             }
+
         }
     }
 }
