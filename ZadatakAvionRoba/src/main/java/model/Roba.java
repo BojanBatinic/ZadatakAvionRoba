@@ -30,8 +30,7 @@ public class Roba {
     }
 
 
-    public Roba(String naziv, String opis, double tezina, Avion avion) {
-        this.id = id;
+    public Roba(String naziv, String opis, double tezina) {
         this.naziv = naziv;
         this.opis = opis;
         this.tezina = tezina;
