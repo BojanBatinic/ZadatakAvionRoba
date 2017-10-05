@@ -28,14 +28,14 @@ public class Zadatak4BrisanjeVrednosti {
             for(Roba r : robe)
                 System.out.println(r);
 
-            List<Roba> zaBrisanje = robaDao.queryForEq(Roba.POLJE_NAZIV,"Voda");
+            Roba zaBrisanje = robaDao.queryForEq(Roba.POLJE_NAZIV,"Voda").get(0);
             robaDao.delete(zaBrisanje);
 
 
             robe = robaDao.queryForAll();
             System.out.println("Prikaz sve robe da " +
                     "proverimo da je  " +
-                    "sva roba uneta.");
+                    "sva roba izbrisana.");
             for(Roba r : robe)
                 System.out.println(r);
 
