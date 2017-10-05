@@ -33,6 +33,12 @@ public class Zadatak3IzmenaVrednosti {
             zaIzmenu.get(0).setOpis("Drvena stolica");
             robaDao.update(zaIzmenu.get(0));
 
+            //drugi nacin za izmenu vrenosti
+            /* Roba izmena = robaDao.queryForEq(Roba.POLJE_NAZIV, "Stolica").get(0);
+
+            izmena.setOpis("Drvena stoica");
+            robaDao.update(izmena);*/
+
             robe = robaDao.queryForAll();
             System.out.println("Prikaz sve robe da " +
                     "proverimo da je  " +
