@@ -28,7 +28,6 @@ public class Avion {
     }
 
     public Avion(String oznaka, int rasponKrila) {
-        this.id = id;
         this.oznaka = oznaka;
         this.rasponKrila = rasponKrila;
     }
