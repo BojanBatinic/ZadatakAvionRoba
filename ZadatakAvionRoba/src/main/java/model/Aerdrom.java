@@ -37,7 +37,7 @@ public class Aerdrom {
             av1.join();
             av2.join();
 
-
+            System.out.println("Svi avioni su poleteli.");
 
         }catch (Exception e) {
             e.printStackTrace();
